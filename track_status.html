@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Status - Insurance Policy Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/logo-icon.png" type="image/png">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SecureInsure</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="policies.html">Policies</a></li>
+<li><a href="buy_policy.php">Buy Policy</a></li>
+                <li><a href="track_status.html">Track Status</a></li>
+                <li><a href="claim_form.html">Claim</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Track Your Policy or Claim Status</h1>
+        <form id="track-status-form" class="flex-form" action="track_status.php" method="POST">
+            <div class="form-group">
+                <label for="tracking_id">Policy ID or Claim ID</label>
+                <input type="text" id="tracking_id" name="tracking_id" required placeholder="Enter Policy ID or Claim ID">
+            </div>
+            <button type="submit" class="btn btn-primary">Check Status</button>
+        </form>
+
+        <div id="status-result" style="display: none;">
+            <h2>Status Information</h2>
+            <div class="card" id="status-details">
+                <!-- Status details will be displayed here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 SecureInsure. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

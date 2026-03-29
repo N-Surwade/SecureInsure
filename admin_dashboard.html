@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Insurance Policy Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SecureInsure Admin</div>
+            <ul class="nav-links">
+                <li><a href="admin_dashboard.php">Dashboard</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Admin Dashboard</h1>
+
+        <!-- Dashboard Statistics -->
+        <section class="dashboard-grid">
+            <div class="stat-card">
+                <h3 id="total-policies">0</h3>
+                <p>Total Policies</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-users">0</h3>
+                <p>Total Users</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="total-claims">0</h3>
+                <p>Total Claims</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="active-purchases">0</h3>
+                <p>Active Purchases</p>
+            </div>
+        </section>
+
+        <!-- Management Sections -->
+        <section id="manage-policies">
+            <h2>Manage Policies</h2>
+            <button class="btn btn-primary" onclick="openModal('add-policy-modal')">Add New Policy</button>
+            <div class="table-container">
+                <table class="table" id="policies-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Policy Name</th>
+                            <th>Type</th>
+                            <th>Premium</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Policies will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="manage-users">
+            <h2>Manage Users</h2>
+            <div class="table-container">
+                <table class="table" id="users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Users will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="manage-claims">
+            <h2>Manage Claims</h2>
+            <div class="table-container">
+                <table class="table" id="claims-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Policy ID</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Claims will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Policy Modal -->
+    <div id="add-policy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Policy</h2>
+            <form id="add-policy-form" action="admin_dashboard.php" method="POST">
+                <input type="hidden" name="action" value="add_policy">
+                <div class="form-group">
+                    <label for="policy_name">Policy Name</label>
+                    <input type="text" id="policy_name" name="policy_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="policy_type">Type</label>
+                    <select id="policy_type" name="policy_type" required>
+                        <option value="Health">Health</option>
+                        <option value="Life">Life</option>
+                        <option value="Vehicle">Vehicle</option>
+                        <option value="Travel">Travel</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="premium">Premium</label>
+                    <input type="number" id="premium" name="premium" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <input type="text" id="duration" name="duration" required>
+                </div>
+                <div class="form-group">
+                    <label for="benefits">Benefits</label>
+                    <textarea id="benefits" name="benefits" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Policy</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p class="footer-bottom">&copy; 2023 SecureInsure. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin_script.js"></script>
+</body>
+</html>

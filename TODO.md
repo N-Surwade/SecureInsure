@@ -1,0 +1,1 @@
+# Task: Change color of menu items to white&#10;&#10;## Steps:&#10;1. [x] Create TODO.md with plan&#10;2. [x] Analyzed files&#10;3. [x] Edit styles.css to ensure footer/nav links are white (#FFFFFF, gold hover)&#10;4. [x] Verify and complete&#10;

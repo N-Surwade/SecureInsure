@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File a Claim - Insurance Policy Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/logo-icon.png" type="image/png">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SecureInsure</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="policies.php">Policies</a></li>
+                <li><a href="buy_policy.php">Buy Policy</a></li>
+                <li><a href="track_status.html">Track Status</a></li>
+                <li><a href="claim_form.html">Claim</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>File an Insurance Claim</h1>
+        <!-- Updated form: added action and method -->
+       <form id="claim-form" class="flex-form" enctype="multipart/form-data" method="POST" action="submit_claim.php">
+            <div class="form-group">
+                <label for="user_id">User ID</label>
+                <input type="number" id="user_id" name="user_id" required placeholder="Enter your User ID">
+            </div>
+            <div class="form-group">
+                <label for="policy_id">Policy ID</label>
+                <input type="number" id="policy_id" name="policy_id" required placeholder="Enter Policy ID">
+            </div>
+            <div class="form-group">
+                <label for="claim_reason">Claim Reason</label>
+                <textarea id="claim_reason" name="claim_reason" required placeholder="Describe the reason for your claim"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="claim_document">Upload Supporting Document</label>
+                <input type="file" id="claim_document" name="claim_document" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                <small>Accepted formats: PDF, JPG, PNG, DOC, DOCX (Optional)</small>
+            </div>
+            <button type="submit" id="claim-submit" class="btn btn-primary">Submit Claim</button>
+        </form>
+        <div id="claim-result" style="margin-top:10px; color:green;"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 SecureInsure. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Updated JS to handle form submission via AJAX -->
+    <script>
+        document.getElementById('claim-form').addEventListener('submit', async function(e) {
+            e.preventDefault(); // prevent default form submission
+
+            const form = e.target;
+            const formData = new FormData(form);
+
+            document.getElementById('claim-result').innerText = "Submitting...";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Server not responding');
+
+                const result = await response.json();
+
+                if(result.status === 'success'){
+                    document.getElementById('claim-result').style.color = 'green';
+                    document.getElementById('claim-result').innerText = result.message;
+                    form.reset();
+                } else {
+                    document.getElementById('claim-result').style.color = 'red';
+                    document.getElementById('claim-result').innerText = result.message;
+                }
+
+            } catch (err) {
+                document.getElementById('claim-result').style.color = 'red';
+                document.getElementById('claim-result').innerText = 'Network error: ' + err.message;
+            }
+        });
+    </script>
+</body>
+</html>

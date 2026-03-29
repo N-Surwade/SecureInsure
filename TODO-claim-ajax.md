@@ -1,0 +1,1 @@
+# AJAX Claim Submission - FIXED&#10;&#10;## Steps:&#10;1. [x] Analyzed files&#10;2. [x] Update styles.css (messages)&#10;3. [x] Update claim_form.html (AJAX ready)&#10;4. [x] Update process_claim.php (JSON)&#10;5. [x] Update script.js (AJAX handler)&#10;6. [x] Fixed track_status.html JS expecting JSON (PHP returns HTML)&#10;
